@@ -1,4 +1,4 @@
-package taa.weekPlanifier;
+package taa.weekPlanifier.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,17 +6,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Employee {
+public class Users {
 	private Long id;
 
 	private String name;
 
 
-	public Employee() {
+	public Users() {
 	}
 
 
-	public Employee(String name) {
+	public Users(String name) {
 		this.name = name;
 	}
 
@@ -40,3 +40,4 @@ public class Employee {
 
 
 }
+

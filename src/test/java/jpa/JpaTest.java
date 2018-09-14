@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import taa.weekPlanifier.Employee;
+import taa.weekPlanifier.entities.*;
 
 public class JpaTest {
 
@@ -20,9 +20,7 @@ public class JpaTest {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 		try {
-			
-			Employee e = new Employee();
-			e.setName("tit");
+			Users e = new Users("Jonas");
 			manager.persist(e);
 		
 		} catch (Exception e) {
