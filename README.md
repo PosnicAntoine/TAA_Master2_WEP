@@ -1,1 +1,1 @@
-# weekPlanifier
+# WEP: Week End Planifier
