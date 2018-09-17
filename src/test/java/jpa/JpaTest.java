@@ -20,8 +20,12 @@ public class JpaTest {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 		try {
-			Users e = new Users("Jonas");
+			User e = new User("test");
+			Address a = new Address();
+			Activity act = new Activity("Golf");
 			manager.persist(e);
+			manager.persist(a);
+			manager.persist(act);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
