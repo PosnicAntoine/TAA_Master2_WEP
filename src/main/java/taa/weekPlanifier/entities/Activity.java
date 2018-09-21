@@ -4,19 +4,25 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
 public class Activity {
 	@Id
-	@Column(name="ID")
+	@GeneratedValue
+	private long id;
 	private String name;
-	private String desc;
+	private String description;
 	@ManyToMany(mappedBy= "activities")
 	private List<Address> addrs;
 	@ManyToMany(mappedBy= "activities")
 	private List<User> users;
+	
+	public Activity() {
+		
+	}
 	
 	public Activity(String name) {
 		super();
@@ -30,10 +36,10 @@ public class Activity {
 		this.name = name;
 	}
 	public String getDesc() {
-		return desc;
+		return description;
 	}
 	public void setDesc(String desc) {
-		this.desc = desc;
+		this.description = desc;
 	}
 	
 	public List<Address> getAddrs() {
@@ -44,6 +50,6 @@ public class Activity {
 	}
 	@Override
 	public String toString() {
-		return "Activities [name=" + name + ", desc=" + desc + ", addrs=" + addrs + "]";
+		return "Activities [name=" + name + ", desc=" + description + ", addrs=" + addrs + "]";
 	}
 }

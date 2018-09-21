@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import taa.weekPlanifier.entities.Activity;
 
 @Transactional
-public interface ActivityDAO extends JpaRepository<Activity, String> {
+public interface ActivityDAO extends JpaRepository<Activity, Long> {
 
 }
