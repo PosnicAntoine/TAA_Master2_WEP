@@ -1,22 +1,32 @@
 package taa.weekPlanifier.controller;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import taa.weekPlanifier.entities.Activity;
 import taa.weekPlanifier.entities.User;
+import taa.weekPlanifier.services.ActivityDAO;
 import taa.weekPlanifier.services.UserDAO;
 
 @RequestMapping("/user")
 @Controller
 public class UserController {
+  // Private fields
+
+  @Autowired
+  private UserDAO userDao;
+  
+  @Autowired
+  private ActivityDAO activityDao;
 
   /**
-   * GET /create  --> Create a new user and save it in the database.
+   * GET /hello  --> return hello
    */
   @RequestMapping(value= "/hello", method = RequestMethod.GET)
   @ResponseBody
@@ -25,15 +35,14 @@ public class UserController {
   }
 
   /**
-   * GET /create  --> Create a new user and save it in the database.
+   * POST /create  --> Create a new user and save it in the database.
    */
-  /**
-  @RequestMapping("/create/{name}")
+ 
+  @RequestMapping(value= "/create", method = RequestMethod.POST)
   @ResponseBody
-  public String create(@PathVariable("name") String name) {
+  public String create(@RequestParam("user") User user) {
     String userId = "";
     try {
-      User user = new User(name);
       userDao.save(user);
       userId = String.valueOf(user.getId());
     }
@@ -42,31 +51,15 @@ public class UserController {
     }
     return "User succesfully created with id = " + userId;
   }
-  
+
   /**
-   * GET /delete  --> Delete the user having the passed id.
-   */
-  /**
-  @RequestMapping("/delete/{id}")
-  @ResponseBody
-  public String delete(@PathVariable("id") long id) {
-    try {
-      userDao.delete(userDao.findById(id).get());
-    }
-    catch (Exception ex) {
-      return "Error deleting the user:" + ex.toString();
-    }
-    return "User succesfully deleted!";
-  }
-  
-  /**
-   * GET /update  --> Update the name for the user in the 
+   * POST /update  --> Update the name for the user in the 
    * database having the passed id.
    */
-  /**
-  @RequestMapping("/update/{id}/{name}")
+  
+  @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
-  public String updateUser(@PathVariable("id") long id,@PathVariable("name") String name) {
+  public String updateUser(@RequestParam("id") long id,@RequestParam("name") String name) {
     try {
       User user = userDao.findById(id).get();
       user.setName(name);
@@ -77,10 +70,53 @@ public class UserController {
     }
     return "User succesfully updated!";
   }
-*/
-  // Private fields
-
-  @Autowired
-  private UserDAO userDao;
   
+  /**
+   * DELETE /delete  --> Delete the user having the passed id.
+   */
+  
+  @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
+  @ResponseBody
+  public String delete(@RequestParam("id") long id) {
+    try {
+      userDao.delete(userDao.findById(id).get());
+    }
+    catch (Exception ex) {
+      return "Error deleting the user:" + ex.toString();
+    }
+    return "User succesfully deleted!";
+  }
+  
+  /**
+   * GET /getUser  --> Get the user of the passed id.
+   */
+  
+  @RequestMapping(value= "/getUser", method = RequestMethod.GET)
+  @ResponseBody
+  public User getUser(@RequestParam("id") long id) {
+	  try {
+		  return userDao.findById(id).get();
+	  }
+	  catch (Exception ex) {
+	      System.out.println("Error getting the user:" + ex.toString());
+	  }
+	  return null;
+  }
+  
+
+  /**
+   * GET /getAllUser  --> Get all of the users.
+   */
+  
+  @RequestMapping(value= "/getAllUser", method = RequestMethod.GET)
+  @ResponseBody
+  public java.util.List<User> getAllUser() {
+	  try {
+		  return userDao.findAll();
+	  }
+	  catch (Exception ex) {
+	      System.out.println("Error getting the users:" + ex.toString());
+	  }
+	  return null;
+  }
 }
