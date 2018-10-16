@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import taa.weekPlanifier.entities.Activity;
 import taa.weekPlanifier.entities.User;
+import taa.weekPlanifier.entities.dto.UserDTO;
 import taa.weekPlanifier.services.ActivityDAO;
 import taa.weekPlanifier.services.UserDAO;
+import taa.weekPlanifier.services.facade.UserFacade;
 
 @RequestMapping("/user")
 @Controller
@@ -21,6 +23,9 @@ public class UserController {
 
   @Autowired
   private UserDAO userDao;
+  
+  @Autowired
+  private UserFacade userFacade;
   
   @Autowired
   private ActivityDAO activityDao;
@@ -93,9 +98,9 @@ public class UserController {
   
   @RequestMapping(value= "/getUser", method = RequestMethod.GET)
   @ResponseBody
-  public User getUser(@RequestParam("id") long id) {
+  public UserDTO getUser(@RequestParam("id") long id) {
 	  try {
-		  return userDao.findById(id).get();
+		  return userFacade.getUserById(id);
 	  }
 	  catch (Exception ex) {
 	      System.out.println("Error getting the user:" + ex.toString());
@@ -110,9 +115,9 @@ public class UserController {
   
   @RequestMapping(value= "/getAllUser", method = RequestMethod.GET)
   @ResponseBody
-  public java.util.List<User> getAllUser() {
+  public java.util.List<UserDTO> getAllUser() {
 	  try {
-		  return userDao.findAll();
+		  return userFacade.findAll();
 	  }
 	  catch (Exception ex) {
 	      System.out.println("Error getting the users:" + ex.toString());
