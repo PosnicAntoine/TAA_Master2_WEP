@@ -11,8 +11,6 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Activity {
 	@Id
-	@GeneratedValue
-	private long id;
 	private String name;
 	private String description;
 	@ManyToMany(mappedBy= "activities")

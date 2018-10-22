@@ -9,31 +9,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import taa.weekPlanifier.entities.Activity;
-import taa.weekPlanifier.entities.User;
 import taa.weekPlanifier.entities.dto.UserDTO;
-import taa.weekPlanifier.services.ActivityDAO;
-import taa.weekPlanifier.services.UserDAO;
-import taa.weekPlanifier.services.facade.UserFacade;
+import taa.weekPlanifier.services.facade.UserService;
 
 @RequestMapping("/user")
 @Controller
 public class UserController {
   // Private fields
-
   @Autowired
-  private UserDAO userDao;
-  
-  @Autowired
-  private UserFacade userFacade;
-  
-  @Autowired
-  private ActivityDAO activityDao;
+  private UserService userService;
 
   /**
    * GET /hello  --> return hello
    */
-  @RequestMapping(value= "/hello", method = RequestMethod.GET)
+  @RequestMapping(value= "/hello", method = RequestMethod.POST)
   @ResponseBody
   public String hello() {
     return "Hello";
@@ -45,35 +34,19 @@ public class UserController {
  
   @RequestMapping(value= "/create", method = RequestMethod.POST)
   @ResponseBody
-  public String create(@RequestParam("user") User user) {
-    String userId = "";
-    try {
-      userDao.save(user);
-      userId = String.valueOf(user.getId());
-    }
-    catch (Exception ex) {
-      return "Error creating the user: " + ex.toString();
-    }
-    return "User succesfully created with id = " + userId;
+  public String create(@RequestParam("user") UserDTO user) {
+	  return userService.create(user);	
   }
 
   /**
-   * POST /update  --> Update the name for the user in the 
-   * database having the passed id.
+   * POST /update  --> Update the user in the 
+   * database.
    */
   
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
-  public String updateUser(@RequestParam("id") long id,@RequestParam("name") String name) {
-    try {
-      User user = userDao.findById(id).get();
-      user.setName(name);
-      userDao.save(user);
-    }
-    catch (Exception ex) {
-      return "Error updating the user: " + ex.toString();
-    }
-    return "User succesfully updated!";
+  public String updateUser(@RequestParam("id") Long id,@RequestParam("user") UserDTO user) {
+      return userService.update(id, user);
   }
   
   /**
@@ -83,13 +56,7 @@ public class UserController {
   @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
   @ResponseBody
   public String delete(@RequestParam("id") long id) {
-    try {
-      userDao.delete(userDao.findById(id).get());
-    }
-    catch (Exception ex) {
-      return "Error deleting the user:" + ex.toString();
-    }
-    return "User succesfully deleted!";
+	  return userService.delete(id);
   }
   
   /**
@@ -99,13 +66,7 @@ public class UserController {
   @RequestMapping(value= "/getUser", method = RequestMethod.GET)
   @ResponseBody
   public UserDTO getUser(@RequestParam("id") long id) {
-	  try {
-		  return userFacade.getUserById(id);
-	  }
-	  catch (Exception ex) {
-	      System.out.println("Error getting the user:" + ex.toString());
-	  }
-	  return null;
+	  return userService.getUser(id);
   }
   
 
@@ -116,12 +77,6 @@ public class UserController {
   @RequestMapping(value= "/getAllUser", method = RequestMethod.GET)
   @ResponseBody
   public java.util.List<UserDTO> getAllUser() {
-	  try {
-		  return userFacade.findAll();
-	  }
-	  catch (Exception ex) {
-	      System.out.println("Error getting the users:" + ex.toString());
-	  }
-	  return null;
+	  return userService.getAllUser();
   }
 }
