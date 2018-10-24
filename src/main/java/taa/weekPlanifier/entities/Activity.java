@@ -11,6 +11,9 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Activity {
 	@Id
+	@GeneratedValue
+	private Long id;
+	@Column(unique=true)
 	private String name;
 	private String description;
 	@ManyToMany(mappedBy= "activities")
@@ -25,6 +28,14 @@ public class Activity {
 	public Activity(String name) {
 		super();
 		this.name = name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -48,6 +59,6 @@ public class Activity {
 	}
 	@Override
 	public String toString() {
-		return "Activities [name=" + name + ", desc=" + description + ", addrs=" + addrs + "]";
+		return "Activities [id=" + id +", name=" + name + ", desc=" + description + ", addrs=" + addrs + "]";
 	}
 }

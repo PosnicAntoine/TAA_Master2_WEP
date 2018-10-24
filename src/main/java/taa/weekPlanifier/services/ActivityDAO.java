@@ -8,4 +8,5 @@ import taa.weekPlanifier.entities.Activity;
 @Transactional
 public interface ActivityDAO extends JpaRepository<Activity, Long> {
 
+
 }

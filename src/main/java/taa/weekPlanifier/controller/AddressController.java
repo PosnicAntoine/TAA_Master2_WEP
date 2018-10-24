@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import taa.weekPlanifier.entities.dto.UserDTO;
-import taa.weekPlanifier.services.facade.UserService;
+import taa.weekPlanifier.entities.dto.AddressDTO;
+import taa.weekPlanifier.services.facade.AddressService;
 
-@RequestMapping("/user")
+@RequestMapping("/address")
 @Controller
-public class UserController {
+public class AddressController {
   // Private fields
   @Autowired
-  private UserService userService;
+  private AddressService addressService;
 
   /**
    * GET /hello  --> return hello
@@ -30,54 +30,54 @@ public class UserController {
   }
 
   /**
-   * POST /create  --> Create a new user and save it in the database.
+   * POST /create  --> Create a new address and save it in the database.
    */
  
   @RequestMapping(value= "/create", method = RequestMethod.POST)
   @ResponseBody
-  public String create(@RequestBody UserDTO user) {
-	  return userService.create(user);	
+  public String create(@RequestBody AddressDTO address) {
+	  return addressService.create(address);	
   }
 
   /**
-   * POST /update  --> Update the user in the 
+   * POST /update  --> Update the address in the 
    * database.
    */
   
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
-  public String updateUser(@RequestBody Long id,@RequestBody UserDTO user) {
-      return userService.update(id, user);
+  public String updateAddress(@RequestBody Long id,@RequestBody AddressDTO address) {
+      return addressService.update(id, address);
   }
   
   /**
-   * DELETE /delete  --> Delete the user having the passed id.
+   * DELETE /delete  --> Delete the address having the passed id.
    */
   
   @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
   @ResponseBody
   public String delete(@RequestParam("id") long id) {
-	  return userService.delete(id);
+	  return addressService.delete(id);
   }
   
   /**
-   * GET /getUser  --> Get the user of the passed id.
+   * GET /getAddress  --> Get the address of the passed id.
    */
   
-  @RequestMapping(value= "/getUser", method = RequestMethod.GET)
+  @RequestMapping(value= "/getAddress", method = RequestMethod.GET)
   @ResponseBody
-  public UserDTO getUser(@RequestParam("id") long id) {
-	  return userService.getUser(id);
+  public AddressDTO getAddress(@RequestParam("id") long id) {
+	  return addressService.getAddress(id);
   }
   
 
   /**
-   * GET /getAllUser  --> Get all of the users.
+   * GET /getAllAddress  --> Get all of the addresss.
    */
   
-  @RequestMapping(value= "/getAllUser", method = RequestMethod.GET)
+  @RequestMapping(value= "/getAllAddress", method = RequestMethod.GET)
   @ResponseBody
-  public java.util.List<UserDTO> getAllUser() {
-	  return userService.getAllUser();
+  public java.util.List<AddressDTO> getAllAddress() {
+	  return addressService.getAllAddress();
   }
 }
