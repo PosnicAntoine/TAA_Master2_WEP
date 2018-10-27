@@ -3,11 +3,13 @@ package taa.weekPlanifier.entities.dto;
 import java.util.List;
 
 import taa.weekPlanifier.entities.Activity;
+import taa.weekPlanifier.entities.Address;
 
 public class UserDTO {
+	private Long id;
 	private String name;
 	
-	private List<Activity> activities;
+	private List<AddressDTO> addrs;
 
 
 	public UserDTO() {
@@ -28,13 +30,23 @@ public class UserDTO {
 	}
 
 
-	public List<Activity> getActivities() {
-		return activities;
+	public List<AddressDTO> getAddrs() {
+		return addrs;
 	}
 
 
-	public void setActivities(List<Activity> activities) {
-		this.activities = activities;
+	public void setAddrs(List<AddressDTO> addrs) {
+		this.addrs = addrs;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 

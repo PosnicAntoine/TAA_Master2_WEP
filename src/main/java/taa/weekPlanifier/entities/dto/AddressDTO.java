@@ -4,11 +4,14 @@ import java.util.List;
 
 
 import taa.weekPlanifier.entities.Activity;
+import taa.weekPlanifier.entities.User;
 
 
 public class AddressDTO {
+	private Long id;
 	private String type;
-	private List<Activity> activities;
+//	private List<Activity> activities;
+//	private List<User> users;
 	private String country;
 	private String city;
 	private int cityNumber;
@@ -41,13 +44,21 @@ public class AddressDTO {
 		this.type = type;
 	}
 	
-	public List<Activity> getActivities() {
-		return activities;
-	}
-
-	public void setActivities(List<Activity> activities) {
-		this.activities = activities;
-	}
+//	public List<Activity> getActivities() {
+//		return activities;
+//	}
+//
+//	public void setActivities(List<Activity> activities) {
+//		this.activities = activities;
+//	}
+//
+//	public List<User> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(List<User> users) {
+//		this.users = users;
+//	}
 	
 	public String getCountry() {
 		return country;
@@ -89,6 +100,14 @@ public class AddressDTO {
 	}
 	public void setComplement(String complement) {
 		this.complement = complement;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	

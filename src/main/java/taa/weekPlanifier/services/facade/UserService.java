@@ -2,13 +2,16 @@ package taa.weekPlanifier.services.facade;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import taa.weekPlanifier.entities.Address;
 import taa.weekPlanifier.entities.User;
 import taa.weekPlanifier.entities.dto.UserDTO;
+import taa.weekPlanifier.services.AddressDAO;
 import taa.weekPlanifier.services.UserDAO;
 
 @Component
@@ -16,6 +19,8 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private AddressDAO addressDao;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -36,10 +41,26 @@ public class UserService {
 		User userUpdated = convertToUser(userDto);
 		userUpdated.setId(id);
 		try {
-			if (userDao.findById(id).isPresent())
+			if (!userDao.findById(id).isPresent())
 				return "Unknown user: " + userUpdated.getId();
 			else
 				userDao.save(userUpdated);
+		} catch (Exception ex) {
+			return "Error updating the user: " + ex.toString();
+		}
+		return "User succesfully updated!";
+	}
+	
+	public String addAddress(Long id, Long idAddress) {
+		Optional<User> userCurrent = userDao.findById(id);
+		Optional<Address> addressCurrent = addressDao.findById(idAddress);
+		try {
+			if (!userCurrent.isPresent())
+				return "Unknown user: " + id;
+			if (!addressCurrent.isPresent())
+				return "Unknown address: "+ idAddress;
+			userDao.save(userCurrent.get().addAddrs(addressCurrent.get()));
+			addressDao.save(addressCurrent.get().addUsers(userCurrent.get()));
 		} catch (Exception ex) {
 			return "Error updating the user: " + ex.toString();
 		}

@@ -36,7 +36,7 @@ public class AddressService {
 		Address addressUpdated = convertToAddress(addressDto);
 		addressUpdated.setId(id);
 		try {
-			if (addressDao.findById(id).isPresent())
+			if (!addressDao.findById(id).isPresent())
 				return "Unknown address: " + addressUpdated.getId();
 			else
 				addressDao.save(addressUpdated);

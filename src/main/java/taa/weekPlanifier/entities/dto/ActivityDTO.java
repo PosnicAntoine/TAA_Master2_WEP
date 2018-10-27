@@ -6,10 +6,10 @@ import taa.weekPlanifier.entities.Address;
 import taa.weekPlanifier.entities.User;
 
 public class ActivityDTO {
+	private Long id;
 	private String name;
 	private String description;
-	private List<Address> addrs;
-	private List<User> users;
+	private List<AddressDTO> addrs;
 	
 	public ActivityDTO() {
 		
@@ -26,30 +26,30 @@ public class ActivityDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesc() {
+	public String getDescription() {
 		return description;
 	}
-	public void setDesc(String desc) {
+	public void setDescription(String desc) {
 		this.description = desc;
 	}
 	
-	public List<Address> getAddrs() {
+	public List<AddressDTO> getAddrs() {
 		return addrs;
 	}
-	public void setAddrs(List<Address> addrs) {
+	public void setAddrs(List<AddressDTO> addrs) {
 		this.addrs = addrs;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
 	}
 	
 	@Override
 	public String toString() {
-		return "Activities [name=" + name + ", desc=" + description + ", addrs=" + addrs + "]";
+		return "Activities [name=" + name + ", description=" + description + ", addrs=" + addrs + "]";
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

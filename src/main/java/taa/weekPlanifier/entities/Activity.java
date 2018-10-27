@@ -16,10 +16,8 @@ public class Activity {
 	@Column(unique=true)
 	private String name;
 	private String description;
-	@ManyToMany(mappedBy= "activities")
+	@ManyToMany
 	private List<Address> addrs;
-	@ManyToMany(mappedBy= "activities")
-	private List<User> users;
 	
 	public Activity() {
 		
@@ -44,10 +42,10 @@ public class Activity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesc() {
+	public String getDescription() {
 		return description;
 	}
-	public void setDesc(String desc) {
+	public void setDescription(String desc) {
 		this.description = desc;
 	}
 	
@@ -59,6 +57,13 @@ public class Activity {
 	}
 	@Override
 	public String toString() {
-		return "Activities [id=" + id +", name=" + name + ", desc=" + description + ", addrs=" + addrs + "]";
+		return "Activities [id=" + id +", name=" + name + ", description=" + description + ", addrs=" + addrs + "]";
+	}
+
+	public Activity addAddrs(Address address) {
+		if(this.addrs.contains(address))
+			return this;
+		this.addrs.add(address);
+		return this;
 	}
 }

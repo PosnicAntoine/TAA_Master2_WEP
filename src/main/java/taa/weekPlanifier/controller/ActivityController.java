@@ -44,8 +44,20 @@ public class ActivityController {
   
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
-  public String updateActivity(@RequestBody Long id,@RequestBody ActivityDTO activity) {
+  public String updateActivity(@RequestParam("id") Long id,@RequestBody ActivityDTO activity) {
       return activityService.update(id, activity);
+  }
+  
+
+  /**
+   * POST /addAddress  --> add the address passed by id in activity
+   * 
+   */
+  
+  @RequestMapping(value= "/addAddress", method = RequestMethod.POST)
+  @ResponseBody
+  public String updateUser(@RequestParam("id") Long id,@RequestParam("idAddress") Long idAddress) {
+      return activityService.addAddress(id, idAddress);
   }
   
   /**

@@ -14,8 +14,10 @@ public class Address {
 	@GeneratedValue
 	private long id;
 	private String type;
-	@ManyToMany
+	@ManyToMany(mappedBy= "addrs")
 	private List<Activity> activities;
+	@ManyToMany(mappedBy= "addrs")
+	private List<User> users;
 	private String country;
 	private String city;
 	private int cityNumber;
@@ -62,6 +64,14 @@ public class Address {
 		this.activities = activities;
 	}
 	
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
 	public String getCountry() {
 		return country;
 	}
@@ -106,9 +116,24 @@ public class Address {
 	
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", type=" + type + ", activities=" + activities + ", country=" + country
-				+ ", city=" + city + ", cityNumber=" + cityNumber + ", street=" + street + ", streetNumber="
-				+ streetNumber + ", complement=" + complement + "]";
+		return "Address [id=" + id + ", type=" + type + ", activities=" + activities + ", users=" + users + 
+				", country=" + country	+ ", city=" + city + ", cityNumber=" + cityNumber + ", street="
+				+ street + ", streetNumber=" + streetNumber + ", complement=" + complement + "]";
+	}
+
+	public Address addUsers(User user) {
+		if(this.users.contains(user))
+			return this;
+		this.users.add(user);
+		return this;
+		
+	}
+
+	public Address addActivity(Activity activity) {
+		if(this.activities.contains(activity))
+			return this;
+		this.activities.add(activity);
+		return this;
 	}
 	
 }

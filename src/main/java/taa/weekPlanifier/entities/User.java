@@ -14,7 +14,7 @@ public class User {
 	private Long id;
 	private String name;
 	@ManyToMany
-	private List<Activity> activities;
+	private List<Address> addrs;
 
 
 	public User() {
@@ -42,19 +42,27 @@ public class User {
 	}
 
 
-	public List<Activity> getActivities() {
-		return activities;
+	public List<Address> getAddrs() {
+		return addrs;
 	}
 
 
-	public void setActivities(List<Activity> activities) {
-		this.activities = activities;
+	public void setAddrs(List<Address> addrs) {
+		this.addrs = addrs;
 	}
 
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", activities=" + activities + "]";
+		return "User [id=" + id + ", name=" + name + ", addrs=" + addrs + "]";
+	}
+
+
+	public User addAddrs(Address address) {
+		if(this.addrs.contains(address))
+			return this;
+		this.addrs.add(address);
+		return this;		
 	}
 
 

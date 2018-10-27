@@ -46,7 +46,7 @@ public class AddressController {
   
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
-  public String updateAddress(@RequestBody Long id,@RequestBody AddressDTO address) {
+  public String updateAddress(@RequestParam("id") Long id,@RequestBody AddressDTO address) {
       return addressService.update(id, address);
   }
   

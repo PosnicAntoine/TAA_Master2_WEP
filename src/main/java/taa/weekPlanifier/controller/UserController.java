@@ -46,8 +46,20 @@ public class UserController {
   
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
-  public String updateUser(@RequestBody Long id,@RequestBody UserDTO user) {
+  public String updateUser(@RequestParam("id") Long id,@RequestBody UserDTO user) {
       return userService.update(id, user);
+  }
+  
+
+  /**
+   * POST /addAddress  --> add the address passed by id in user
+   * 
+   */
+  
+  @RequestMapping(value= "/addAddress", method = RequestMethod.POST)
+  @ResponseBody
+  public String updateUser(@RequestParam("id") Long id,@RequestParam("idAddress") Long idAddress) {
+      return userService.addAddress(id, idAddress);
   }
   
   /**
@@ -56,7 +68,7 @@ public class UserController {
   
   @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
   @ResponseBody
-  public String delete(@RequestParam("id") long id) {
+  public String delete(@RequestParam("id") Long id) {
 	  return userService.delete(id);
   }
   
@@ -66,7 +78,7 @@ public class UserController {
   
   @RequestMapping(value= "/getUser", method = RequestMethod.GET)
   @ResponseBody
-  public UserDTO getUser(@RequestParam("id") long id) {
+  public UserDTO getUser(@RequestParam("id") Long id) {
 	  return userService.getUser(id);
   }
   
