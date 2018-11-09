@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import taa.weekPlanifier.entities.dto.AddressDTO;
 import taa.weekPlanifier.services.facade.AddressService;
 
+@CrossOrigin
 @RequestMapping("/address")
 @Controller
 public class AddressController {
@@ -23,7 +24,7 @@ public class AddressController {
   /**
    * GET /hello  --> return hello
    */
-  @RequestMapping(value= "/hello", method = RequestMethod.POST)
+  @RequestMapping(value= "/hello", method = RequestMethod.GET)
   @ResponseBody
   public String hello() {
     return "Hello";

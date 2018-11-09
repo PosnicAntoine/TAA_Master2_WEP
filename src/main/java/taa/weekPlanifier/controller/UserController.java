@@ -4,6 +4,7 @@ package taa.weekPlanifier.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import taa.weekPlanifier.entities.dto.UserDTO;
 import taa.weekPlanifier.services.facade.UserService;
 
+@CrossOrigin
 @RequestMapping("/user")
 @Controller
 public class UserController {
@@ -23,7 +25,8 @@ public class UserController {
   /**
    * GET /hello  --> return hello
    */
-  @RequestMapping(value= "/hello", method = RequestMethod.POST)
+  
+  @RequestMapping(value= "/hello", method = RequestMethod.GET)
   @ResponseBody
   public String hello() {
     return "Hello";
@@ -32,7 +35,7 @@ public class UserController {
   /**
    * POST /create  --> Create a new user and save it in the database.
    */
- 
+  
   @RequestMapping(value= "/create", method = RequestMethod.POST)
   @ResponseBody
   public String create(@RequestBody UserDTO user) {
