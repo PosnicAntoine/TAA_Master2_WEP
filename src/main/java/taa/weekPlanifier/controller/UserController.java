@@ -46,7 +46,7 @@ public class UserController {
    * POST /update  --> Update the user in the 
    * database.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
   public String updateUser(@RequestParam("id") Long id,@RequestBody UserDTO user) {
@@ -68,7 +68,7 @@ public class UserController {
   /**
    * DELETE /delete  --> Delete the user having the passed id.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
   @ResponseBody
   public String delete(@RequestParam("id") Long id) {

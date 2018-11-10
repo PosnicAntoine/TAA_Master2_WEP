@@ -32,7 +32,7 @@ public class ActivityController {
   /**
    * POST /create  --> Create a new activity and save it in the database.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/create", method = RequestMethod.POST)
   @ResponseBody
   public String create(@RequestBody ActivityDTO activity) {
@@ -43,7 +43,7 @@ public class ActivityController {
    * POST /update  --> Update the activity in the 
    * database.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
   public String updateActivity(@RequestParam("id") Long id,@RequestBody ActivityDTO activity) {
@@ -65,7 +65,7 @@ public class ActivityController {
   /**
    * DELETE /delete  --> Delete the activity having the passed id.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
   @ResponseBody
   public String delete(@RequestParam("id") long id) {
@@ -75,7 +75,7 @@ public class ActivityController {
   /**
    * GET /getActivity  --> Get the activity of the passed id.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/getActivity", method = RequestMethod.GET)
   @ResponseBody
   public ActivityDTO getActivity(@RequestParam("id") long id) {
@@ -86,7 +86,7 @@ public class ActivityController {
   /**
    * GET /getAllActivity  --> Get all of the activities.
    */
-  //TODO on front
+  //Done on front
   @RequestMapping(value= "/getAllActivity", method = RequestMethod.GET)
   @ResponseBody
   public java.util.List<ActivityDTO> getAllActivity() {
