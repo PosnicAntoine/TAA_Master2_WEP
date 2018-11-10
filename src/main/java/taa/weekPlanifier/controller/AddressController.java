@@ -23,7 +23,7 @@ public class AddressController {
   /**
    * GET /hello  --> return hello
    */
-  @RequestMapping(value= "/hello", method = RequestMethod.POST)
+  @RequestMapping(value= "/hello", method = RequestMethod.GET)
   @ResponseBody
   public String hello() {
     return "Hello";
