@@ -4,6 +4,7 @@ package taa.weekPlanifier.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import taa.weekPlanifier.entities.dto.UserDTO;
 import taa.weekPlanifier.services.facade.UserService;
 
+@CrossOrigin
 @RequestMapping("/user")
 @Controller
 public class UserController {
@@ -23,6 +25,7 @@ public class UserController {
   /**
    * GET /hello  --> return hello
    */
+  //Done on front
   @RequestMapping(value= "/hello", method = RequestMethod.GET)
   @ResponseBody
   public String hello() {
@@ -32,7 +35,7 @@ public class UserController {
   /**
    * POST /create  --> Create a new user and save it in the database.
    */
- 
+  //Done on front
   @RequestMapping(value= "/create", method = RequestMethod.POST)
   @ResponseBody
   public String create(@RequestBody UserDTO user) {
@@ -43,7 +46,7 @@ public class UserController {
    * POST /update  --> Update the user in the 
    * database.
    */
-  
+  //Done on front
   @RequestMapping(value= "/update", method = RequestMethod.POST)
   @ResponseBody
   public String updateUser(@RequestParam("id") Long id,@RequestBody UserDTO user) {
@@ -55,7 +58,7 @@ public class UserController {
    * POST /addAddress  --> add the address passed by id in user
    * 
    */
-  
+  //TODO on front
   @RequestMapping(value= "/addAddress", method = RequestMethod.POST)
   @ResponseBody
   public String updateUser(@RequestParam("id") Long id,@RequestParam("idAddress") Long idAddress) {
@@ -65,7 +68,7 @@ public class UserController {
   /**
    * DELETE /delete  --> Delete the user having the passed id.
    */
-  
+  //Done on front
   @RequestMapping(value= "/delete", method = RequestMethod.DELETE)
   @ResponseBody
   public String delete(@RequestParam("id") Long id) {
@@ -75,7 +78,7 @@ public class UserController {
   /**
    * GET /getUser  --> Get the user of the passed id.
    */
-  
+  //Done on front
   @RequestMapping(value= "/getUser", method = RequestMethod.GET)
   @ResponseBody
   public UserDTO getUser(@RequestParam("id") Long id) {
@@ -86,7 +89,7 @@ public class UserController {
   /**
    * GET /getAllUser  --> Get all of the users.
    */
-  
+  //Done on front
   @RequestMapping(value= "/getAllUser", method = RequestMethod.GET)
   @ResponseBody
   public java.util.List<UserDTO> getAllUser() {
